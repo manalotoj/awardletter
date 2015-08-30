@@ -1,0 +1,15 @@
+{
+  "name": "awardletter",
+  "version": "1.0.0",
+  "description": "awardletter client",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "john manaloto",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.61.0",
+    "winston": "^1.0.1"
+  }
+}
