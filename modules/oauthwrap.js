@@ -1,6 +1,10 @@
 //'use strict';
+var config = require('../config');
+var logger = require('./logger');
 
 module.exports.getAuthHeader = function(request, callback) {
+	logger.debug('begin getAuthHeader');
+
 	// call sts
 	var https = require('https');
 	var constants = require('constants');
@@ -28,4 +32,5 @@ module.exports.getAuthHeader = function(request, callback) {
 	};
 
 	httpRequest.post({url: request.url, form: form}, responseHandler);
+	logger.debug('end getAuthHeader');
 }

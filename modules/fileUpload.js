@@ -15,8 +15,9 @@ module.exports.upload = function(filePath) {
 	logger.debug('received file to upload: ', filePath);
 
 	// retrieve file content
-	var content = fs.readFileSync(filePath, 'utf8');
-	logger.debug("file content: ", content);
+	var content = '';
+	//fs.readFileSync(filePath, 'utf8');
+	//logger.debug("file content: ", content);
 
 	function uploadCallback(err, data) {
 		logger.debug('begin uploadCallback');
@@ -43,15 +44,35 @@ module.exports.upload = function(filePath) {
 		logger.debug('end doUpload');
 	}
 
-	oauthwrap.getAuthHeader(config.oauthWrapRequest, 
-		function(error, authHeader) {
-			if (error) {
-				logger.warn('error calling oauthWrap.getAuthHeader: ', error);
-				return;
-			}
-			logger.debug('authorization received: ', authHeader);
-			doUpload(content, authHeader);
-		});
+	function getAuthentication() {
+		oauthwrap.getAuthHeader(config.oauthWrapRequest, 
+			function(error, authHeader) {
+				if (error) {
+					logger.warn('error calling oauthWrap.getAuthHeader: ', error);
+					return;
+				}
+				logger.debug('authorization received: ', authHeader);
+				doUpload(content, authHeader);
+			});
+	}
+
+	function readFileHandler(err, data) {
+		logger.debug('begin readFileHandler');
+
+		if (err) logger.warn("readFileHanlder error: ", err);
+
+		try {
+			content = JSON.parse(data);
+		} catch (exc) {
+			logger.error('JSON.parse failed: ', exc);
+			return;
+		}
+		getAuthentication();
+
+		logger.debug('end readFileHandler');
+	}
+
+	fs.readFile(filePath, readFileHandler);
 
 	logger.debug('end upload');
 }

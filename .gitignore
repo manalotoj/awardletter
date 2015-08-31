@@ -28,6 +28,8 @@ build/Release
 node_modules
 
 config.json
+prod.config.json
+sandbox.config.json
 
 # source and target folders
 source
