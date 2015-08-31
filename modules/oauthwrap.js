@@ -1,3 +1,5 @@
+//'use strict';
+
 module.exports.getAuthHeader = function(request, callback) {
 	// call sts
 	var https = require('https');

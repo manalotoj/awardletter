@@ -1,3 +1,5 @@
+'use strict';
+
 var winston = require( 'winston' ),
 	config = require('../config').logging,
 	logDir = config.directory,

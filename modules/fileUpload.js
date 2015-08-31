@@ -1,17 +1,16 @@
+'use strict';
+
 var fs = require('fs');
 var pathModule = require('path');
 
-var config = require('./config');
-var logger = require('./modules/logger');
-var oauthwrap = require('./modules/oauthwrap');
-var filesService = require('./modules/filesService');
-var fileUpload = require('./modules/fileUpload');
-var chokidar = require('chokidar');
+var config = require('../config');
+var logger = require('./logger');
+var oauthwrap = require('./oauthwrap');
+var filesService = require('./filesService');
 
-/*
 var filesApi = config.filesApi;
 
-function upload(filePath) {
+module.exports.upload = function(filePath) {
 	if (filePath == null || filePath.trim().length == 0) throw new Error('content is null or empty');
 	logger.debug('received file to upload: ', filePath);
 
@@ -51,25 +50,8 @@ function upload(filePath) {
 				return;
 			}
 			logger.debug('authorization received: ', authHeader);
-			doUpload(filePath, authHeader);
+			doUpload(content, authHeader);
 		});
 
-	logger.debug('end uploadFile');
+	logger.debug('end upload');
 }
-*/
-var watcher = chokidar.watch('./source', {ignored: /[\/\\]\./, persistent: true});
-watcher
-    .on('add', function(path) 
-    {
-        logger.debug('File ', path, ' has been added');    
-        if (pathModule.extname(path) === '.' + 'json') {
-        	logger.debug('.fiz file has been added - ', path);
-        	try {
-        		fileUpload.upload(path);
-    		} catch (exc) {
-    			logger.error(exc);
-    		}
-        }
-    })
-
-    .on('error', function(error) {logger.error('chkidar error occurred: ', error);})
