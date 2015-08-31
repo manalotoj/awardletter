@@ -16,18 +16,18 @@ if ( !fs.existsSync( logDir ) ) {
 logger = new( winston.Logger )( {
 	transports: [
 		new winston.transports.Console( {
-			level: 'warn',
+			level: 'silly',
 			colorize: true
 		} ),
 		new winston.transports.File( {
 			level: env === 'development' ? 'debug' : 'info',
-			filename: logDir + '/logs.log',
+			filename: logDir + '/al.log',
 			maxsize: 1024 * 1024 * 10 // 10MB
 		} )
     ],
 	exceptionHandlers: [
 		new winston.transports.File( {
-			filename: 'log/errors.log'
+			filename: '/al_errors.log'
 		} )
     ]
 } );

@@ -9,5 +9,7 @@
 	},
 	"filesApi" : {
 		"rootUrl" : "https://apisandbox.awardletter.net:5443/"
-	}
+	},
+	"sourceDirectory" : "./source",
+	"targetDirectory" : "./target"
 }

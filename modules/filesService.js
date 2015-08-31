@@ -1,5 +1,6 @@
 'use strict';
 
+var logger = require('./logger');
 var httpRequest = require('request');
 var files = 'files';
 var values = 'values';
@@ -14,7 +15,7 @@ function HttpException(statusCode, message) {
 
 exports.upload = function(request, callback) {
 
-  //console.log(request.authorization);
+  logger.debug("begin upload; request = " + request);
 
   var options = {
     url: request.rootUrl + files,
@@ -22,21 +23,17 @@ exports.upload = function(request, callback) {
       'Authorization': request.authorization,
       'Content-Type': 'application/octet-stream'
     },
-    body: "{}"
+    body: JSON.stringify(request.content)
   };  
 
-  function requestHandler(error, response, body){
-    if (error) callback(error);
-    callback(null, body);
-    //console.log('response: ' + response);
-    //console.log('body: ' + body);
-    
-    /*
-    if (response.statusCode == 201) { 
-      throw new HttpException(response.statusCode, 'Http Status Code 201 not received.'); 
+  function requestHandler(error, response, body){    
+    if (error) {
+      logger.error("file upload error: " + error);
+      callback(error);
     }
+    logger.debug("upload response status code: " + response.statusCode);
+    logger.debug("upload response body: " + body);
     callback(null, body);
-    */
   }
 
   httpRequest.post(options, requestHandler);
