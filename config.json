@@ -3,12 +3,12 @@
 		"directory" : "./logs"
 	},
 	"oauthWrapRequest" : {
-		"url":"https://verifymyfafsa.accesscontrol.windows.net/WRAPv0.9/",
-		"creds":{"uid":"fullcoll_system", "pwd":"kvc6jhKfnqP/4Eg8iZDLMAJMbw3sSunIb5G3b7Srvls="},
-		"wrapScope":"https://api.awardletter.com:5443/"
+		"url":"https://studentverification.accesscontrol.windows.net/WRAPv0.9/",
+		"creds":{"uid":"userid", "pwd":"password"},
+		"wrapScope":"https://apisandbox.awardletter.net:5443/"
 	},
 	"filesApi" : {
-		"rootUrl" : "https://api.awardletter.com:5443/"
+		"rootUrl" : "https://apisandbox.awardletter.net:5443/"
 	},
 	"sourceDirectory" : "./source",
 	"targetDirectory" : "./target"
