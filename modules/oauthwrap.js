@@ -1,5 +1,4 @@
 //'use strict';
-var config = require('../config');
 var logger = require('./logger');
 
 module.exports.getAuthHeader = function(request, callback) {
@@ -20,14 +19,7 @@ module.exports.getAuthHeader = function(request, callback) {
 		// extract and format token
 		var output = body.split('&')[0];
 		var start = 'wrap_access_token=';
-		//output = output.substring(start.length, output.length).replace(/[\xFF-\xFFFF]/g, "%" + "$&".charCodeAt(0));
-		//output = output.substring(start.length, output.length);
-		//console.log(output);
 		output = 'WRAP access_token="' + unescape(output.substring(start.length, output.length)) + '"';
-
-		// build header
-
-		// return value
 		callback(null, output);
 	};
 

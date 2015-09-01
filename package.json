@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chokidar": "^1.0.5",
+    "forever": "^0.15.1",
     "request": "^2.61.x",
     "winston": "^1.0.x"
   }
