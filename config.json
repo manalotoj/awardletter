@@ -4,7 +4,7 @@
 	},
 	"oauthWrapRequest" : {
 		"url":"https://studentverification.accesscontrol.windows.net/WRAPv0.9/",
-		"creds":{"uid":"userid", "pwd":"password"},
+		"creds":{"uid":"test", "pwd":"test"},
 		"wrapScope":"https://apisandbox.awardletter.net:5443/"
 	},
 	"filesApi" : {
