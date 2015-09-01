@@ -8,55 +8,7 @@ var filesService = require('./modules/filesService');
 var fileUpload = require('./modules/fileUpload');
 var chokidar = require('chokidar');
 
-/*
-var filesApi = config.filesApi;
 
-function upload(filePath) {
-	if (filePath == null || filePath.trim().length == 0) throw new Error('content is null or empty');
-	logger.debug('received file to upload: ', filePath);
-
-	// retrieve file content
-	var content = fs.readFileSync(filePath, 'utf8');
-	logger.debug("file content: ", content);
-
-	function uploadCallback(err, data) {
-		logger.debug('begin uploadCallback');
-			
-		if (err) {
-			console.log(err);
-			return;
-		}
-		
-		logger.debug(data);
-		logger.debug('end uploadCallback');
-	}
-
-	function doUpload(content, authHeader) {
-		logger.debug('begin doUpload');
-
-		var request = { 
-				authorization: authHeader,
-				rootUrl: filesApi.rootUrl,
-				content: content
-			};
-
-		filesService.upload(request, uploadCallback);
-		logger.debug('end doUpload');
-	}
-
-	oauthwrap.getAuthHeader(config.oauthWrapRequest, 
-		function(error, authHeader) {
-			if (error) {
-				logger.warn('error calling oauthWrap.getAuthHeader: ', error);
-				return;
-			}
-			logger.debug('authorization received: ', authHeader);
-			doUpload(filePath, authHeader);
-		});
-
-	logger.debug('end uploadFile');
-}
-*/
 var watcher = chokidar.watch('./source', {ignored: /[\/\\]\./, persistent: true});
 watcher
     .on('add', function(path) 
@@ -70,6 +22,6 @@ watcher
     			logger.error(exc);
     		}
         }
-    })
+    }) 
 
     .on('error', function(error) {logger.error('chkidar error occurred: ', error);})

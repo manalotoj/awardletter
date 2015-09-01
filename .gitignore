@@ -34,3 +34,5 @@ sandbox.config.json
 # source and target folders
 source
 target
+fileUpload.js
+config.json
