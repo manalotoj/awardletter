@@ -66,7 +66,26 @@ exports.getFile = function(request, fileId, callback) {
 
 exports.getRecords = function(request, fileId, callback) {
   logger.debug('begin getFile; request = ', JSON.stringify(request), '; fileId = ', fileId);
+  
+  var options = {
+    url: request.rootUrl + files + '/' + fileId + '/records',
+    headers: {
+      'Authorization': request.authorization,
+      'Content-Type': 'application/octet-stream'
+    }
+  };
 
+  function getRecordsRequestHandler(error, response, body) {
+    if (error) {
+      logger.error("getFile upload error: " + error);
+      callback(error);
+    }
+    logger.debug("getFile response status code: " + response.statusCode);
+    logger.debug("getFile response body: " + body);
+    callback(null, body);    
+  }
+
+  httpRequest.get(options, getRecordsRequestHandler);
   logger.debug('end getFile');
 }
 
