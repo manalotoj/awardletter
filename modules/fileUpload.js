@@ -8,7 +8,7 @@
 'use strict';
 
 var fs = require('fs');
-var pathModule = require('path');
+var pathModule = require('path'); 
 
 var config = require('../config');
 var logger = require('./logger');
