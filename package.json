@@ -2,7 +2,7 @@
   "name": "awardletter",
   "version": "1.0.0",
   "description": "awardletter client",
-  "main": "main.js",
+  "main": "fileSystemWatcher.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,5 +13,10 @@
     "forever": "^0.15.1",
     "request": "^2.61.x",
     "winston": "^1.0.x"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-jsdoc": "^0.6.8",
+    "jasmine": "^2.3.2"
   }
 }

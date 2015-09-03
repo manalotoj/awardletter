@@ -36,3 +36,5 @@ source
 target
 fileUpload.js
 config.json
+doc
+out

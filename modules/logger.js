@@ -1,3 +1,10 @@
+/**
+*	@module 		logger
+*	@description 	a singleton logger module that uses winston under the covers 
+*					(copied from: http://thottingal.in/blog/2014/04/06/winston-nodejs-logging/).
+					Use standard winston syntax to create log entries (ex. logger.debug, logger.warn etc.)
+*/
+
 'use strict';
 
 var winston = require( 'winston' ),

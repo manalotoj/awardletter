@@ -1,3 +1,10 @@
+// filename: filesService.js
+
+/** 
+* @module filesService 
+* @description Exposes operations supported by awardletter files REST api
+*/
+
 'use strict';
 
 var logger = require('./logger');
@@ -12,7 +19,11 @@ function HttpException(statusCode, message) {
     return 'statusCode: ' + this.statusCode + '; message: ' + this.message;
   }
 } 
-
+/**
+* upload a file as application/octet-stream content
+* @param {object} request Defines rootUrl and authorization header value
+# @param {function} callback Standard callback
+*/
 exports.upload = function(request, callback) {
 
   logger.debug("begin upload; request = " + JSON.stringify(request));
@@ -26,6 +37,12 @@ exports.upload = function(request, callback) {
     body: JSON.stringify(request.content)
   };  
 
+  /**
+  * callback for http.post
+  * @param {Exception} error The error if any  
+  * @param {object} response http response object
+  * @param {body} body http response body
+  */ 
   function requestHandler(error, response, body){    
     if (error) {
       logger.error("file upload error: " + error);
@@ -39,6 +56,12 @@ exports.upload = function(request, callback) {
   httpRequest.post(options, requestHandler);
 }
 
+/**
+* retrieves file processing results summary
+* @param {object} request Defines rootUrl and authorization header value
+* @param {fileId} string The Id of the file being retrieved
+# @param {function} callback Standard callback
+*/
 exports.getFile = function(request, fileId, callback) {
   logger.debug('begin getFile; request = ', JSON.stringify(request), '; fileId = ', fileId);
 
@@ -50,6 +73,12 @@ exports.getFile = function(request, fileId, callback) {
     }
   };
 
+  /**
+  * callback for http.get
+  * @param {object} error The error if any occurred
+  * @param {object} response http response object
+  * @param {body} body http response body
+  */ 
   function getFileRequestHandler(error, response, body) {
     if (error) {
       logger.error("getFile upload error: " + error);
@@ -64,6 +93,12 @@ exports.getFile = function(request, fileId, callback) {
   logger.debug('end getFile');
 }
 
+/**
+* get all records for a given file
+* @param {object} request Defines rootUrl and authorization header value
+* @param {fileId} string The Id of the file for which records are being retrieved
+# @param {function} callback Standard callback
+*/
 exports.getRecords = function(request, fileId, callback) {
   logger.debug('begin getFile; request = ', JSON.stringify(request), '; fileId = ', fileId);
   
@@ -75,6 +110,12 @@ exports.getRecords = function(request, fileId, callback) {
     }
   };
 
+  /**
+  * callback for http.get
+  * @param {Exception} error The error if any  
+  * @param {object} response http response object
+  * @param {body} body http response body
+  */ 
   function getRecordsRequestHandler(error, response, body) {
     if (error) {
       logger.error("getFile upload error: " + error);
@@ -86,7 +127,6 @@ exports.getRecords = function(request, fileId, callback) {
   }
 
   httpRequest.get(options, getRecordsRequestHandler);
-  logger.debug('end getFile');
 }
 
 
