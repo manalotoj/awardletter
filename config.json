@@ -8,10 +8,11 @@
 		"wrapScope":"wrap_scope"
 	},
 	"filesApi" : {
-		"rootUrl" : "root_url"
+		"rootUrl" : "api_root_url"
 	},
 	"watch" : {
 		"directory" : "./source",
 		"extension" : "json"
-	}
+	},
+	"targetDirectory" : "./target"	
 }

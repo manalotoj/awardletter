@@ -26,12 +26,12 @@ build/Release
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
-prod.config.json
+dev.config.json
 sandbox.config.json
+blank.config.json
 
 # source and target folders
 source
 target
-config.json
 doc
 out
